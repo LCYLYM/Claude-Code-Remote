@@ -22,6 +22,17 @@ Control [Claude Code](https://claude.ai/code) remotely via multiple messaging pl
 
 > 🐦 Follow [@Jiaxi_Cui](https://x.com/Jiaxi_Cui) for updates and AI development insights
 
+## 📚 Quick Links
+
+### Getting Started
+- 🚀 **[One-Click Telegram Setup (5 min)](TELEGRAM_QUICKSTART.md)** - English Quick Start
+- 🇨🇳 **[完整中文指南](GETTING_STARTED_CN.md)** - Complete Chinese Guide
+- ⚡ **[Quick Reference Card](QUICK_REFERENCE.md)** - Commands & Troubleshooting
+
+### Technical Documentation  
+- 📋 **[Deployment Summary](DEPLOYMENT_SUMMARY.md)** - Technical Overview
+- 📝 **[Changelog v1.0](CHANGELOG_v1.0.md)** - What's New
+
 ## ✨ Features
 
 - **📧 Multiple Messaging Platforms**: 
@@ -78,24 +89,59 @@ Control [Claude Code](https://claude.ai/code) remotely via multiple messaging pl
 
 ## 🚀 Quick Start
 
+### ⚡ One-Click Telegram Deployment (NEW! 推荐)
+
+**5分钟完成部署 / Complete setup in 5 minutes:**
+
+```bash
+git clone https://github.com/LCYLYM/Claude-Code-Remote.git
+cd Claude-Code-Remote
+chmod +x quick-start-telegram.sh
+./quick-start-telegram.sh
+```
+
+The script will:
+- ✅ Check your environment (Node.js, npm)
+- ✅ Install all dependencies automatically
+- ✅ Create and configure .env file
+- ✅ Set up necessary directories
+- ✅ Configure Claude hooks
+- ✅ Guide you through Telegram Bot setup
+
+**See [TELEGRAM_QUICKSTART.md](TELEGRAM_QUICKSTART.md) for detailed instructions.**
+
+After setup, simply run:
+```bash
+npm run telegram  # Start webhook server
+```
+
+Test your setup:
+```bash
+node claude-hook-notify.js completed
+```
+
+---
+
+### 📝 Manual Setup (Alternative)
+
 ### 1. Prerequisites
 
 **System Requirements:**
 - Node.js >= 14.0.0
-- **tmux** (required for command injection)
-- Active tmux session with Claude Code running
+- **tmux** (recommended for command injection)
+- Active tmux session with Claude Code running (optional)
 
 ### 2. Install
 
 ```bash
-git clone https://github.com/JessyTsui/Claude-Code-Remote.git
+git clone https://github.com/LCYLYM/Claude-Code-Remote.git
 cd Claude-Code-Remote
 npm install
 ```
 
 ### 3. Choose Your Platform
 
-#### Option A: Configure Email (Recommended for Beginners)
+#### Option A: Configure Email (Traditional Method)
 
 ```bash
 # Copy example config
@@ -119,26 +165,28 @@ SESSION_MAP_PATH=/your/path/to/Claude-Code-Remote/src/data/session-map.json
 
 📌 **Gmail users**: Use [App Passwords](https://myaccount.google.com/security), not your regular password.
 
-#### Option B: Configure Telegram ✅ **NEW**
+#### Option B: Configure Telegram ✅ **RECOMMENDED**
 
-**Quick Setup:**
+**One-Click Setup (Recommended):**
 ```bash
-chmod +x setup-telegram.sh
-./setup-telegram.sh
+chmod +x quick-start-telegram.sh
+./quick-start-telegram.sh
 ```
 
+See [TELEGRAM_QUICKSTART.md](TELEGRAM_QUICKSTART.md) for the complete guide.
+
 **Manual Setup:**
-1. Create bot via [@BotFather](https://t.me/BotFather)
-2. Get your Chat ID from bot API
-3. Configure webhook URL (use ngrok for local testing)
+1. Create bot via [@BotFather](https://t.me/BotFather) - Send `/newbot`
+2. Get your Chat ID from [@userinfobot](https://t.me/userinfobot)
+3. Copy `.env.example` to `.env` and fill in credentials
+4. (Optional) Configure webhook URL using ngrok for command injection
 
 **Required Telegram settings:**
 ```env
 TELEGRAM_ENABLED=true
 TELEGRAM_BOT_TOKEN=your-bot-token-here
 TELEGRAM_CHAT_ID=your-chat-id-here
-TELEGRAM_WEBHOOK_URL=https://your-ngrok-url.app
-SESSION_MAP_PATH=/your/path/to/Claude-Code-Remote/src/data/session-map.json
+TELEGRAM_WEBHOOK_URL=https://your-ngrok-url.app  # Optional, for remote commands
 ```
 
 **Optional Telegram settings:**
