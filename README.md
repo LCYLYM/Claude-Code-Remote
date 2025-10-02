@@ -22,6 +22,12 @@ Control [Claude Code](https://claude.ai/code) remotely via multiple messaging pl
 
 > 🐦 Follow [@Jiaxi_Cui](https://x.com/Jiaxi_Cui) for updates and AI development insights
 
+## 📚 Quick Links
+
+- 🚀 **[One-Click Telegram Setup (5 min)](TELEGRAM_QUICKSTART.md)** - English Quick Start
+- 🇨🇳 **[完整中文指南](GETTING_STARTED_CN.md)** - Complete Chinese Guide  
+- 📋 **[Deployment Summary](DEPLOYMENT_SUMMARY.md)** - Technical Overview
+
 ## ✨ Features
 
 - **📧 Multiple Messaging Platforms**: 
