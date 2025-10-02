@@ -24,9 +24,14 @@ Control [Claude Code](https://claude.ai/code) remotely via multiple messaging pl
 
 ## 📚 Quick Links
 
+### Getting Started
 - 🚀 **[One-Click Telegram Setup (5 min)](TELEGRAM_QUICKSTART.md)** - English Quick Start
-- 🇨🇳 **[完整中文指南](GETTING_STARTED_CN.md)** - Complete Chinese Guide  
+- 🇨🇳 **[完整中文指南](GETTING_STARTED_CN.md)** - Complete Chinese Guide
+- ⚡ **[Quick Reference Card](QUICK_REFERENCE.md)** - Commands & Troubleshooting
+
+### Technical Documentation  
 - 📋 **[Deployment Summary](DEPLOYMENT_SUMMARY.md)** - Technical Overview
+- 📝 **[Changelog v1.0](CHANGELOG_v1.0.md)** - What's New
 
 ## ✨ Features
 
