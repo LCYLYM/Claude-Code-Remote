@@ -33,9 +33,10 @@ if (!fs.existsSync(sessionsDir)) {
     fs.mkdirSync(sessionsDir, { recursive: true });
 }
 
-const TelegramChannel = require('./src/channels/telegram/telegram');
-const DesktopChannel = require('./src/channels/local/desktop');
-const EmailChannel = require('./src/channels/email/smtp');
+// Lazy load channels only when needed
+let TelegramChannel = null;
+let DesktopChannel = null;
+let EmailChannel = null;
 
 async function sendHookNotification() {
     try {
@@ -52,6 +53,9 @@ async function sendHookNotification() {
         
         // Configure Desktop channel (only if explicitly enabled)
         if (process.env.DESKTOP_ENABLED === 'true') {
+            if (!DesktopChannel) {
+                DesktopChannel = require('./src/channels/local/desktop');
+            }
             const desktopChannel = new DesktopChannel({
                 completedSound: 'Glass',
                 waitingSound: 'Tink'
@@ -61,10 +65,15 @@ async function sendHookNotification() {
         
         // Configure Telegram channel if enabled
         if (process.env.TELEGRAM_ENABLED === 'true' && process.env.TELEGRAM_BOT_TOKEN) {
+            if (!TelegramChannel) {
+                TelegramChannel = require('./src/channels/telegram/telegram');
+            }
+            
             const telegramConfig = {
                 botToken: process.env.TELEGRAM_BOT_TOKEN,
                 chatId: process.env.TELEGRAM_CHAT_ID,
-                groupId: process.env.TELEGRAM_GROUP_ID
+                groupId: process.env.TELEGRAM_GROUP_ID,
+                forceIPv4: process.env.TELEGRAM_FORCE_IPV4 === 'true'
             };
             
             if (telegramConfig.botToken && (telegramConfig.chatId || telegramConfig.groupId)) {
@@ -75,6 +84,10 @@ async function sendHookNotification() {
         
         // Configure Email channel if enabled
         if (process.env.EMAIL_ENABLED === 'true' && process.env.SMTP_USER) {
+            if (!EmailChannel) {
+                EmailChannel = require('./src/channels/email/smtp');
+            }
+            
             const emailConfig = {
                 smtp: {
                     host: process.env.SMTP_HOST,
